@@ -2,4 +2,5 @@ mkdir uploads
 npm i -y
 
 
-echo "Now enter this command - \nnpm run-script run"
+echo "Now enter this command -"
+echo "npm run-script run"
