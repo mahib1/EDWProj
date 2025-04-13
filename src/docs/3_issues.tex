@@ -1,0 +1,26 @@
+\chapter{Challenges and Issues Faced}
+
+\section{Adapter Module Power Constraints}
+
+We aimed to extract 5W of power at 5V (1A) using the LM7805 regulator. However, the regulator's inefficiency meant we needed ~10W input power. At 7V input, this translated to a current draw of ~1.42A, which practically shorted the Input of the 7805. The input resistance appeared too low, leading to significant ripple and voltage drops.\\
+
+\textbf{Solution:} We increased the input capacitor from 0.33µF to a much larger 2200µF, which effectively dampened voltage ripple and ensured smoother regulation.
+
+\section{Component Unavailability}
+
+Despite extensive searching across local markets in Delhi, we encountered repeated unavailability of key components:
+
+\begin{itemize}
+    \item \textbf{TPS61202 IC} (intended for boosting): Not found. Replaced with an MT3608 breakout.
+    \item \textbf{MCP73831/2 Charger IC}: Eventually ordered online after many failed attempts to find it in stores.
+\end{itemize}
+
+\section{ESP32 Flashing Issues}
+
+The ESP32 initially refused to flash firmware. After investigation, we realized the user needed permissions to access USB devices. Adding the user to the correct system group (`dialout` or similar on Linux) resolved the problem.
+
+\section{QR Code Decoding Errors}
+
+While the ESP32 detected QR codes reliably, the actual decoding sometimes failed due to ECC (Error Correction Code) issues. Despite tweaking buffer sizes and memory allocations (using PSRAM), results were inconsistent.\\
+
+\textbf{Workaround:} We moved decoding to the server. This improved performance and also allowed decoding of stylized QR codes — a feature that wouldn’t be feasible on the ESP itself.

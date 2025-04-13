@@ -1,0 +1,16 @@
+\chapter{The Idea}
+
+The original concept for this project was to design and implement a QR code scanner. However, as the project progressed, additional features were envisioned and integrated, including the ability to capture photos and toggle a flashlight on and off.
+
+At the heart of our project lies the ESP32-CAM module, a compact yet powerful microcontroller with an integrated camera. This module is responsible for capturing frames, processing them to detect QR codes, and relaying data to a server if a QR code is detected.
+
+\section*{Functional Overview}
+
+\begin{itemize}
+    \item \textbf{QR Detection:} The ESP32-CAM runs a detection algorithm which continuously analyzes incoming frames. If a QR code is found, it forwards the relevant frame to a server for decoding.
+    \item \textbf{Server-Side Decoding:} The server, running custom code, takes the frame and attempts to decode the QR code using standard libraries. Once decoded, the extracted data is sent to the user.
+    \item \textbf{Telegram Bot Integration:} The server communicates with a Telegram bot that sends the decoded data to the user's Telegram account. This makes the setup highly portable and easy to access.
+    \item \textbf{Modes of Operation:} The system can be toggled between different modes — photo capture mode and QR scan mode. In the photo mode, users can capture and receive photos directly via Telegram.
+\end{itemize}
+
+This project showcases how low-cost, off-the-shelf microcontrollers can be leveraged to implement real-time computer vision tasks with additional cloud-based functionalities.
